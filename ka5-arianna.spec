@@ -1,11 +1,13 @@
 #
 # Conditional build:
-%bcond_with	tests		# build with tests
+%bcond_with	tests		# test suite
+
 %define		kdeappsver	23.08.5
 %define		qtver		5.15.2
 %define		kf5ver		5.71.0
 %define		kaname		arianna
 Summary:	An ebook reader
+Summary(pl.UTF-8):	Czytnik e-booków
 Name:		ka5-%{kaname}
 Version:	23.08.5
 Release:	1
@@ -13,7 +15,7 @@ License:	GPL v3
 Group:		X11/Applications
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
 # Source0-md5:	a658239afbb982d5a78a0e6766ad2921
-URL:		http://www.kde.org/
+URL:		https://kde.org/
 BuildRequires:	Qt5Core-devel
 BuildRequires:	Qt5Gui-devel >= 5.15.2
 BuildRequires:	Qt5Network-devel >= 5.15.10
@@ -56,6 +58,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Arianna is an ebook reader.
 
+%description -l pl.UTF-8
+Arianna to czytnik e-booków.
+
 %prep
 %setup -q -n %{kaname}-%{version}
 
@@ -66,18 +71,19 @@ Arianna is an ebook reader.
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+
 %ninja_build -C build
 
 %if %{with tests}
 ctest --test-dir build
 %endif
 
-
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %ninja_install -C build
 
-rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{sr,zh_CN}
+%{__rm} -r $RPM_BUILD_ROOT%{_kdedocdir}/{sr,zh_CN}
 
 %find_lang %{kaname} --all-name --with-kde
 
