@@ -40,10 +40,10 @@ BuildRequires:	kf5-kdbusaddons-devel >= 5.98.0
 BuildRequires:	kf5-kfilemetadata-devel >= 5.110.0
 BuildRequires:	kf5-ki18n-devel >= 5.98.0
 BuildRequires:	kf5-kirigami2-devel >= 5.98.0
+BuildRequires:	kf5-kirigami-addons-devel >= 0.10
 BuildRequires:	kf5-kquickcharts-devel >= 5.98.0
 BuildRequires:	kf5-kwindowsystem-devel >= 5.98.0
 BuildRequires:	kf5-qqc2-desktop-style-devel
-BuildRequires:	kirigami-addons-devel >= 0.10
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	python3
